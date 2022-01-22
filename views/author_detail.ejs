@@ -31,14 +31,17 @@
                 </ul>
             </div>
             <div class="col-sm-10">
-                <h1><%= title%></h1>
-                <ul>
-                    <% author_list.forEach(author=>{%>
-                        <li><a href="<%= author.url%>"><%= author.name%></a>
-                            (<%= author.lifespan%>)
-                        </li>
-                    <%})%>
-                </ul>
+                <h1>Author: <%= author.name%></h1>
+                <p><%= author.lifespan%>
+                <div style="margin-left: 20px; margin-top: 20px">
+                    <h4>Books</h4>
+                    <dl>
+                        <%author_books.forEach(book=>{%>
+                            <dt><a href="<%= book.url%>"><%= book.title%></a></dt>
+                            <dd><%= book.summary%></dd>
+                        <%})%>
+                    </dl>
+                </div>
             </div>
         </div>
     </div>
