@@ -3,6 +3,8 @@ var Genre = require('../models/genre');
 var Book = require('../models/book');
 var async = require('async');
 const { body,validationResult } = require("express-validator");
+const author = require('../models/author');
+const book = require('../models/book');
 
 // Display list of all Genre.
 exports.genre_list = function(req, res, next) {
@@ -95,18 +97,26 @@ exports.genre_create_post =  [
     }
   }
 ];
-exports.genre_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Genre create POST');
-};
 
 // Display Genre delete form on GET.
 exports.genre_delete_get = function(req, res) {
-    res.send('NOT IMPLEMENTED: Genre delete GET');
+  async.parallel({
+    books: function(callback){
+      Book.find({genre:{'$in':`${req.params.id}`}}, callback)
+    }
+  }, function(err, results, next){
+    if(err){next(err)}
+    console.log(results)
+    res.render('genre_delete', {title:"Delete Genre", results})
+  })
 };
 
 // Handle Genre delete on POST.
 exports.genre_delete_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Genre delete POST');
+  Genre.findByIdAndDelete(req.params.id, function deleteGenre(err){
+    if(err){return next(err)}
+    res.redirect('/catalog/genres')
+  })
 };
 
 // Display Genre update form on GET.
