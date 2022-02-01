@@ -106,7 +106,6 @@ exports.genre_delete_get = function(req, res) {
     }
   }, function(err, results, next){
     if(err){next(err)}
-    console.log(results)
     res.render('genre_delete', {title:"Delete Genre", results})
   })
 };

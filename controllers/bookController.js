@@ -81,7 +81,6 @@ exports.book_create_get = function(req, res, next) {
         },
     }, function(err, results) {
         if (err) { return next(err); }
-        console.log(results)
         res.render('book_form', { title: 'Create Book', authors: results.authors, genres: results.genres });
     });
 
@@ -140,7 +139,6 @@ exports.book_create_post = [
                 // Mark our selected genres as checked.
                 for (let i = 0; i < results.genres.length; i++) {
                     if (book.genre.indexOf(results.genres[i]._id) > -1) {
-                        console.log(`results.genres[i]._id`, results.genres[i]._id)
                         results.genres[i].checked='true';
                     }
                 }

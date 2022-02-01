@@ -41,7 +41,6 @@ function authorCreate(first_name, family_name, d_birth, d_death, cb) {
       cb(err, null)
       return
     }
-    console.log('New Author: ' + author);
     authors.push(author)
     cb(null, author)
   }  );
@@ -55,7 +54,6 @@ function genreCreate(name, cb) {
       cb(err, null);
       return;
     }
-    console.log('New Genre: ' + genre);
     genres.push(genre)
     cb(null, genre);
   }   );
@@ -76,7 +74,6 @@ function bookCreate(title, summary, isbn, author, genre, cb) {
       cb(err, null)
       return
     }
-    console.log('New Book: ' + book);
     books.push(book)
     cb(null, book)
   }  );
@@ -98,7 +95,6 @@ function bookInstanceCreate(book, imprint, due_back, status, cb) {
       cb(err, null)
       return
     }
-    console.log('New BookInstance: ' + bookinstance);
     bookinstances.push(bookinstance)
     cb(null, book)
   }  );
